@@ -72,8 +72,8 @@ fprintf('\nAverage Service Time for Counter 1 = %2.6f\n', averageServiceTime1);
 averageServiceTime2 = sum(serviceTime2)/totalCustomer2;
 fprintf('\nAverage Service Time for Counter 2 = %2.6f\n', averageServiceTime2);
 
-averageServiceTime2 = sum(serviceTimeEx)/totalCustomerEx;
-fprintf('\nAverage Service Time for Counter 2 = %2.6f\n', averageServiceTime2);
+averageServiceTimeEx = sum(serviceTimeEx)/totalCustomerEx;
+fprintf('\nAverage Service Time for Counter 3 = %2.6f\n', averageServiceTimeEx);
 
 averageWaitingTime = (sum(waitingTime1) + sum(waitingTime2) + sum(waitingTimeEx))/totalCustomer;
 fprintf('\nAverage Waiting Time = %2.6f\n', averageWaitingTime);
