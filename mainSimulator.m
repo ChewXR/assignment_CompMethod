@@ -5,20 +5,52 @@ function output=mainSimulator()
     count_cus = Input ('Please enter the total no. customer for this simulation: ', 99);
     
 %-------------------------------------------------Random Item for Customer--------------------------------------------------------------------------%
-minItem = 1;
-maxItem = 21; 
 
-for i = 1:count_cus
-    randomItem(i) = floor((maxItem - minItem) * rand() + minItem);
+
+% User input to choose the type of random number generator
+rngType = input('Choose the type of random number generator:\n
+1. Additive LCG\n
+2. Multiplication LCG\n
+3. Random Variate Generator for Exponential Distribution\n
+4. Random Variate Generator for Uniform Distribution\nEnter the corresponding number: ');
+
+% Adjust the range of random numbers based on the selected generator type
+switch rngType
+    case 1 % Additive LCG
+        minItem = 1;
+        maxItem = 21;
+    case 2 % Multiplication LCG
+        minItem = 1;
+        maxItem = 21;
+    case 3 % Random Variate Generator for Exponential Distribution
+        minItem = 1;
+        maxItem = 21;
+    case 4 % Random Variate Generator for Uniform Distribution
+        minItem = 1;
+        maxItem = 21;
+    otherwise
+        error('Invalid option selected.');
 end
 
-for i= 1:count_cus
-    randomServiceTime(i) = floor(rand()*99) + 1;
-end
+% Random Item for Customers
+randomItem = generateRandomItems(count_cus, minItem, maxItem, rngType);
 
-for i= 1:count_cus
-    randomInterArrivalTime(i) = floor(rand()*99) + 1;
-end 
+
+
+// minItem = 1;
+// maxItem = 21; 
+
+// for i = 1:count_cus
+//     randomItem(i) = floor((maxItem - minItem) * rand() + minItem);
+// end
+
+// for i= 1:count_cus
+//     randomServiceTime(i) = floor(rand()*99) + 1;
+// end
+
+// for i= 1:count_cus
+//     randomInterArrivalTime(i) = floor(rand()*99) + 1;
+// end 
 
     
 %---------------------------------------------------------Calculation=====--------------------------------------------------------------------------%
