@@ -253,9 +253,12 @@ disp('--------------------------------------------------------------------------
 disp(' ')
 
 
-
+%------------------------------------------------------- EVALUATION -------------------------------------------------------
     
-
+resultEva(count_cus, waitingTime1, waitingTime2, waitingTimeEx, 
+serviceEnd1, serviceEnd2, serviceEndEx, interArrivalTime, arrivalTime, 
+serviceTime1, serviceTime2, serviceTimeEx, 
+timeSpent1, timeSpent2, timeSpentEx)
 
 
 
