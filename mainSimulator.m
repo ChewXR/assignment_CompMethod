@@ -255,7 +255,7 @@ disp(' ')
 
 %------------------------------------------------------- EVALUATION -------------------------------------------------------
     
-resultEva(count_cus, waitingTime1, waitingTime2, waitingTimeEx, serviceEnd1, serviceEnd2, serviceEndEx, interArrivalTime, arrivalTime, serviceTime1, serviceTime2, serviceTimeEx, timeSpent1, timeSpent2, timeSpentEx);
+resultEva(count_cus, counter, waitingTime1, waitingTime2, waitingTimeEx, serviceEnd1, serviceEnd2, serviceEndEx, interArrivalTime, arrivalTime, serviceTime1, serviceTime2, serviceTimeEx, timeSpend1, timeSpend2, timeSpendEx);
 
 
 

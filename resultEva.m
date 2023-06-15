@@ -1,12 +1,12 @@
-function output = resultEva(count_cus, waitingTime1, waitingTime2, waitingTimeEx, serviceEnd1, serviceEnd2, serviceEndEx, interArrivalTime, arrivalTime, serviceTime1, serviceTime2, serviceTimeEx, timeSpent1, timeSpent2, timeSpentEx)
+function output = resultEva(count_cus, counter, waitingTime1, waitingTime2, waitingTimeEx, serviceEnd1, serviceEnd2, serviceEndEx, interArrivalTime, arrivalTime, serviceTime1, serviceTime2, serviceTimeEx, timeSpend1, timeSpend2, timeSpendEx)
 
     
 printf('\n-------------------DATA EVALUATION-------------------\n');
 
 for loop = 1:count_cus
 
-    if i < count_cus
-            totalCustomer = totalCustomer + 1;
+    if loop <= count_cus
+        totalCustomer = totalCustomer + 1;
     end
 
     if counter(loop) == 1
@@ -49,12 +49,16 @@ if total_SimulatedTime1 > total_SimulatedTime2
         total_SimulatedTime = total_SimulatedTime1;
     else
         total_SimulatedTime = total_SimulatedTimeEx;
+    end
 else
     if total_SimulatedTime2 > total_SimulatedTimeEx
         total_SimulatedTime = total_SimulatedTime2;
     else
         total_SimulatedTime = total_SimulatedTimeEx;
+    end
 end
+
+fprintf('\nTotal Customer = %2.0f\n', totalCustomer);
 
 averageInterArrivalTime = sum(interArrivalTime)/totalCustomer;
 fprintf('\nAverage Inter-arrival Time = %2.6f\n', averageInterArrivalTime);
@@ -74,7 +78,7 @@ fprintf('\nAverage Service Time for Counter 2 = %2.6f\n', averageServiceTime2);
 averageWaitingTime = (sum(waitingTime1) + sum(waitingTime2) + sum(waitingTimeEx))/totalCustomer;
 fprintf('\nAverage Waiting Time = %2.6f\n', averageWaitingTime);
 
-averageTimeSpent = (sum(timeSpent1) + sum(timeSpent2) + sum(timeSpentEx))/totalCustomer;
+averageTimeSpent = (sum(timeSpend1) + sum(timeSpend2) + sum(timeSpendEx))/totalCustomer;
 fprintf('\nAverage Time Spent = %2.6f\n', averageTimeSpent);
 
 probabilityToWait = (totalCustomerWait/totalCustomer)*100;
