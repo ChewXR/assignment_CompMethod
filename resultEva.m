@@ -3,11 +3,13 @@ function output = resultEva(count_cus, counter, waitingTime1, waitingTime2, wait
     
 printf('\n-------------------DATA EVALUATION-------------------\n');
 
-for loop = 1:count_cus
+totalCustomer = 0;
+totalCustomer1 = 0;
+totalCustomer2 = 0;
+totalCustomerEx = 0;
 
-    if loop <= count_cus
-        totalCustomer = totalCustomer + 1;
-    end
+for loop = 1:count_cus
+    totalCustomer = totalCustomer + 1;
 
     if counter(loop) == 1
         totalCustomer1 = totalCustomer1 + 1;
@@ -27,14 +29,14 @@ end
 
 totalCustomerWait2 = 0;
 for loop = 1:length(waitingTime2)
-    if waitingTime2 ~= 0
+    if waitingTime2(loop) ~= 0
         totalCustomerWait2 = totalCustomerWait2 + 1;
     end
 end
 
 totalCustomerWaitEx = 0;
 for loop = 1:length(waitingTimeEx)
-    if waitingTimeEx ~= 0
+    if waitingTimeEx(loop) ~= 0
         totalCustomerWaitEx = totalCustomerWaitEx + 1;
     end
 end
@@ -44,19 +46,15 @@ totalCustomerWait = totalCustomerWait1 + totalCustomerWait2 + totalCustomerWaitE
 total_SimulatedTime1 = serviceEnd1(length(serviceEnd1));
 total_SimulatedTime2 = serviceEnd2(length(serviceEnd2));
 total_SimulatedTimeEx = serviceEndEx(length(serviceEndEx));
-if total_SimulatedTime1 > total_SimulatedTime2
-    if total_SimulatedTime1 > total_SimulatedTimeEx
-        total_SimulatedTime = total_SimulatedTime1;
-    else
-        total_SimulatedTime = total_SimulatedTimeEx;
-    end
+
+if total_SimulatedTime1 >= total_SimulatedTime2 && total_SimulatedTime1 >= total_SimulatedTimeEx
+    total_SimulatedTime = total_SimulatedTime1;
+elseif total_SimulatedTime2 >= total_SimulatedTimeEx
+    total_SimulatedTime = total_SimulatedTime2;
 else
-    if total_SimulatedTime2 > total_SimulatedTimeEx
-        total_SimulatedTime = total_SimulatedTime2;
-    else
-        total_SimulatedTime = total_SimulatedTimeEx;
-    end
+    total_SimulatedTime = total_SimulatedTimeEx;
 end
+
 
 fprintf('\nTotal Customer = %2.0f\n', totalCustomer);
 
@@ -75,6 +73,9 @@ fprintf('\nAverage Service Time for Counter 2 = %2.6f\n', averageServiceTime2);
 averageServiceTimeEx = sum(serviceTimeEx)/totalCustomerEx;
 fprintf('\nAverage Service Time for Counter 3 = %2.6f\n', averageServiceTimeEx);
 
+totalWaitingTime = (sum(waitingTime1) + sum(waitingTime2) + sum(waitingTimeEx));
+fprintf('\nTotal Waiting Time = %2.6f\n', totalWaitingTime);
+
 averageWaitingTime = (sum(waitingTime1) + sum(waitingTime2) + sum(waitingTimeEx))/totalCustomer;
 fprintf('\nAverage Waiting Time = %2.6f\n', averageWaitingTime);
 
@@ -83,6 +84,8 @@ fprintf('\nAverage Time Spent = %2.6f\n', averageTimeSpent);
 
 probabilityToWait = (totalCustomerWait/totalCustomer)*100;
 fprintf('\nProbability that a customer has to wait = %2.6f\n', probabilityToWait);
+
+fprintf('\nTotal simulated time = %2.6f\n', total_SimulatedTime);
 
 percentageC1Busy = (sum(serviceTime1)/total_SimulatedTime)*100;
 fprintf('\nPercentage of time Counter 1 was busy = %2.6f\n', percentageC1Busy);
