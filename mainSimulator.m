@@ -4,21 +4,57 @@ function output=mainSimulator()
     %Fixed Number of Users
     count_cus = Input ('Please enter the total no. customer for this simulation: ', 99);
     
-%-------------------------------------------------Random Item for Customer--------------------------------------------------------------------------%
-minItem = 1;
-maxItem = 21; 
+%-------------------------------------------------Random Generator for Customer--------------------------------------------------------------------------% 
 
-for i = 1:count_cus
-    randomItem(i) = floor((maxItem - minItem) * rand() + minItem);
+
+% User input to choose the type of random number generator
+disp('Choose the type of random number generator:')
+disp('1. Additive LCG')
+disp('2. Multiplication LCG')
+disp('3. Random Variate Generator for Exponential Distribution')
+disp('4. Random Variate Generator for Uniform Distribution')
+rngType = input('Enter the corresponding number: ');
+% Adjust the range of random numbers based on the selected generator type
+switch rngType
+    case 1 % Additive LCG
+        minItem = 1;
+        maxItem = 21;
+    case 2 % Multiplication LCG
+        minItem = 1;
+        maxItem = 21;
+    case 3 % Random Variate Generator for Exponential Distribution
+        minItem = 1;
+        maxItem = 21;
+    case 4 % Random Variate Generator for Uniform Distribution
+        minItem = 1;
+        maxItem = 21;
+    otherwise
+        error('Invalid option selected.');
 end
 
-for i= 1:count_cus
-    randomServiceTime(i) = floor(rand()*99) + 1;
+% Random Item for Customers
+randomItem = generateRandomItems(count_cus, minItem, maxItem, rngType);
+
+switch rngType
+    case 1 % Additive LCG
+        minItem = 1;
+        maxItem = 100;
+    case 2 % Multiplication LCG
+        minItem = 1;
+        maxItem = 100;
+    case 3 % Random Variate Generator for Exponential Distribution
+        minItem = 1;
+        maxItem = 100;
+    case 4 % Random Variate Generator for Uniform Distribution
+        minItem = 1;
+        maxItem = 100;
+    otherwise
+        error('Invalid option selected.');
 end
 
-for i= 1:count_cus
-    randomInterArrivalTime(i) = floor(rand()*99) + 1;
-end 
+% Random InterArrival and Service Time for Customers
+randomInterArrivalTime = generateRandomItems(count_cus, minItem, maxItem, rngType);
+randomServiceTime = generateRandomItems(count_cus, minItem, maxItem, rngType);
 
     
 %---------------------------------------------------------Calculation=====--------------------------------------------------------------------------%
